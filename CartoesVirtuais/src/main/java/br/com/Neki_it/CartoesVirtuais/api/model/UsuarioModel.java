@@ -19,8 +19,10 @@ public class UsuarioModel {
 	
 	@NotBlank
 	private String nome;
+	
 	@NotBlank
 	private String email;
+	
 	@NotBlank
 	private String senha;
 	
