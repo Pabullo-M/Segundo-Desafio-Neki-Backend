@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Embeddable
-public class RedesSociais {
+public class RedesSociaisModel {
 	
 	private String linkedin;
 	private String github;

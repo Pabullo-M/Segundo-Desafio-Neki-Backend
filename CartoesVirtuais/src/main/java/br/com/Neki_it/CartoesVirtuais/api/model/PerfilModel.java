@@ -36,5 +36,5 @@ public class PerfilModel {
 	private String telefone;
 	
 	@Embedded
-	private RedesSociais redesSociais;
+	private RedesSociaisModel redesSociais;
 }
