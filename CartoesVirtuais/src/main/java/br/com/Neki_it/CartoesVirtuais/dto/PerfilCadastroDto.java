@@ -1,4 +1,4 @@
-package br.com.Neki_it.CartoesVirtuais.api.model.input;
+package br.com.Neki_it.CartoesVirtuais.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PerfilCadastroInput {
+public class PerfilCadastroDto {
 
 	
 	@NotBlank
