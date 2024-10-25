@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class UsuarioModel {
@@ -17,6 +18,8 @@ public class UsuarioModel {
     private String nome;
 
     @Column(unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@(neki-it|neki)\\.com\\.br$", 
+		message = "O email deve pertencer aos domínios neki-it.com.br ou neki.com.br")
     private String email;
     
     @NotBlank
