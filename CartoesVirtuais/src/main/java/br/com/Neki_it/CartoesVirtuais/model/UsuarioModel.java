@@ -1,4 +1,4 @@
-package br.com.Neki_it.CartoesVirtuais.api.model;
+package br.com.Neki_it.CartoesVirtuais.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

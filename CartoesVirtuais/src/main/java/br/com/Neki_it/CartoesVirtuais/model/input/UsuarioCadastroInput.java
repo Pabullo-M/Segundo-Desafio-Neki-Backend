@@ -1,4 +1,4 @@
-package br.com.Neki_it.CartoesVirtuais.api.model.input;
+package br.com.Neki_it.CartoesVirtuais.model.input;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
