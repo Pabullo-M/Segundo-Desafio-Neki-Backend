@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.Neki_it.CartoesVirtuais.dto.UsuarioCadastroDto;
 import br.com.Neki_it.CartoesVirtuais.mapper.UsuarioMapper;
 import br.com.Neki_it.CartoesVirtuais.model.UsuarioModel;
-import br.com.Neki_it.CartoesVirtuais.model.input.UsuarioCadastroInput;
 import br.com.Neki_it.CartoesVirtuais.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 
