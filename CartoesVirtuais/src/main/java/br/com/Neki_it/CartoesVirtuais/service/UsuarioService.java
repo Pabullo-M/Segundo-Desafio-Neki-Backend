@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.Neki_it.CartoesVirtuais.dto.UsuarioCadastroDto;
+import br.com.Neki_it.CartoesVirtuais.dto.UsuarioLoginDto;
 import br.com.Neki_it.CartoesVirtuais.exception.DatabaseException;
 import br.com.Neki_it.CartoesVirtuais.exception.ResourceNotFoundException;
 import br.com.Neki_it.CartoesVirtuais.mapper.UsuarioMapper;
@@ -38,5 +39,10 @@ public class UsuarioService {
 			}
 	        throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
 		}	
+	}
+
+	public ResponseEntity<?> usuarioLogin(UsuarioLoginDto usuarioLoginDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
