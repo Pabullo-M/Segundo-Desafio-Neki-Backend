@@ -5,7 +5,6 @@ import org.mapstruct.factory.Mappers;
 
 import br.com.Neki_it.CartoesVirtuais.dto.UsuarioCadastroDto;
 import br.com.Neki_it.CartoesVirtuais.model.UsuarioModel;
-import br.com.Neki_it.CartoesVirtuais.model.input.UsuarioCadastroInput;
 
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
