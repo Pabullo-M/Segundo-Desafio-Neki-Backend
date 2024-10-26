@@ -3,6 +3,7 @@ package br.com.Neki_it.CartoesVirtuais.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.Neki_it.CartoesVirtuais.dto.UsuarioCadastroDto;
@@ -24,6 +25,8 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> adicionar (@Valid UsuarioCadastroDto usuarioCadastroInput) {
 		
+		String senhaEncryp = new BCryptPasswordEncoder().encode(usuarioCadastroInput.getSenha());
+		usuarioCadastroInput.setSenha(senhaEncryp);
 		try {
 			UsuarioModel usuario = usuarioMapper.UsuarioCadastroInputToUsuarioModel(usuarioCadastroInput);
 			usuarioRepository.save(usuario);
