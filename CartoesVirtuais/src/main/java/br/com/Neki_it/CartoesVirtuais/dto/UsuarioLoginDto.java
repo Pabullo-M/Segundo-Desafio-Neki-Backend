@@ -19,7 +19,7 @@ public class UsuarioLoginDto {
 	}
 
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 
 	public void setEmail(String email) {

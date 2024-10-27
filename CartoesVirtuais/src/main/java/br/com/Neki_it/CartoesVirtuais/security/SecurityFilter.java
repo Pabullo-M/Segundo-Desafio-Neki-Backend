@@ -25,14 +25,16 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Autowired
 	private UserDetailsRepository repository;
 	
+	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 	        throws ServletException, IOException {
+		System.out.println(request.getHeader("Authorization"));
 	    String token = recuperarToken(request);
 	    
 	    if (token != null) {
 	        try {
-	            String Email = tokenService.validacaoToken(token); 
-	            UserDetails usuario = repository.findByEmail(Email);
+	            String email = tokenService.validacaoToken(token); 
+	            UserDetails usuario = repository.findByEmail(email);
 	            if (usuario != null) {
 	                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 	                SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -51,6 +53,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	}
 	private String recuperarToken(HttpServletRequest request) {
 	    String authHeader = request.getHeader("Authorization");
+	    System.out.println("aqui " + authHeader + request.toString());
 	    if (authHeader != null && authHeader.startsWith("Bearer ")) {
 	        return authHeader.replace("Bearer ", "");
 	    }
