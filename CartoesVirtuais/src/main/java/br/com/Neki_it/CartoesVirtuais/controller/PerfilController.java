@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.Neki_it.CartoesVirtuais.dto.PerfilAtualizarDto;
 import br.com.Neki_it.CartoesVirtuais.dto.PerfilCadastroDto;
 import br.com.Neki_it.CartoesVirtuais.service.PerfilService;
 import jakarta.validation.Valid;
@@ -47,9 +48,9 @@ public class PerfilController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<?> atualizarPerfil(@RequestBody @Valid PerfilCadastroDto perfilCadastroDto, @PathVariable Long id){
+	public ResponseEntity<?> atualizarPerfil(@RequestBody @Valid PerfilAtualizarDto perfilAtualizarDto, @PathVariable Long id){
 		
-		return perfilService.atualizarPerfil(perfilCadastroDto, id);
+		return perfilService.atualizarPerfil(perfilAtualizarDto, id);
 	}
 	
 }

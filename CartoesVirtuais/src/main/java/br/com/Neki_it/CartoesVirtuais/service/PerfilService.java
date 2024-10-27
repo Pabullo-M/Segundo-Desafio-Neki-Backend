@@ -95,7 +95,7 @@ public class PerfilService {
 
 	public ResponseEntity<?> atualizarPerfil(PerfilAtualizarDto perfilAtualizarDto, Long id) {
 		try {
-			 perfilRepository.findById(id)
+			 return perfilRepository.findById(id)
 					.map(perfil -> {	
 						
 						perfilMapper.AtualizaPerfil(perfilAtualizarDto, perfil);
@@ -108,6 +108,5 @@ public class PerfilService {
 			
 			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
 		}
-		return null;
 	}
 }
