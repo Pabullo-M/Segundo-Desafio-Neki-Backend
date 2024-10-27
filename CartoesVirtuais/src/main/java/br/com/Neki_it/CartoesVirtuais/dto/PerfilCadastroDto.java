@@ -1,42 +1,113 @@
-
 package br.com.Neki_it.CartoesVirtuais.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import br.com.Neki_it.CartoesVirtuais.model.RedesSociaisModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Pattern;
 
 
-@Getter
-@Setter
+
 public class PerfilCadastroDto {
-
 	
+
+
 	@NotBlank
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@(neki-it|neki)\\.com\\.br$", 
+		message = "O email deve pertencer aos domínios neki-it.com.br ou neki.com.br")
 	private String email;
-	@Schema(example = "Arthur Nunes")
+	
 	@NotBlank
 	private String nomeCompleto;
 	
-	@Schema(example = "Zico")
 	private String nomeSocial;
 	
-	@Schema(example = "03/03/1953")
 	@NotBlank
 	private String dataNascimento;
 	
 	@NotBlank
 	private String foto;
 	
-	@Schema(example = "(021)912345678")
 	private String telefone;
 	
-	private String linkedin;
+	private RedesSociaisModel redesSociais;
 	
-	private String github;
+	public PerfilCadastroDto() {
+		super();
+	}
+
+	public PerfilCadastroDto( @NotBlank String email, @NotBlank String nomeCompleto, String nomeSocial,
+			@NotBlank String dataNascimento, @NotBlank String foto, String telefone, RedesSociaisModel redesSociais) {
+		super();
+		this.email = email;
+		this.nomeCompleto = nomeCompleto;
+		this.nomeSocial = nomeSocial;
+		this.dataNascimento = dataNascimento;
+		this.foto = foto;
+		this.telefone = telefone;
+		this.redesSociais = redesSociais;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email.toLowerCase();
+	}
+
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
+
+	public String getNomeSocial() {
+		return nomeSocial;
+	}
+
+	public void setNomeSocial(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
+	}
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public RedesSociaisModel getRedesSociais() {
+		return redesSociais;
+	}
+
+	public void setRedesSociais(RedesSociaisModel redesSociais) {
+		this.redesSociais = redesSociais;
+	}
 	
-	private String instagram;
-	
-	private String facebook;
 	
 }
