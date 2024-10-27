@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.Neki_it.CartoesVirtuais.dto.PerfilAtualizarDto;
 import br.com.Neki_it.CartoesVirtuais.dto.PerfilCadastroDto;
 import br.com.Neki_it.CartoesVirtuais.exception.DatabaseException;
 import br.com.Neki_it.CartoesVirtuais.exception.ResourceNotFoundException;
@@ -72,5 +74,40 @@ public class PerfilService {
 			
 			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
 		}
+	}
+
+	public ResponseEntity<?> deletarPerfil(Long id) {
+		try {
+			if(!perfilRepository.existsById(id)) {
+				 throw new ResourceNotFoundException("Perfil com id " + id + " não encontrado.");
+			}
+			perfilRepository.deleteById(id);
+			return ResponseEntity.ok("Perfil de id: " + id + " deletado com sucesso!!" );
+		}catch(ResourceNotFoundException e) {
+			
+			return ResponseEntity.badRequest().body(e.getMessage());
+		
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
+		}
+	}
+
+	public ResponseEntity<?> atualizarPerfil(PerfilAtualizarDto perfilAtualizarDto, Long id) {
+		try {
+			 perfilRepository.findById(id)
+					.map(perfil -> {	
+						
+						perfilMapper.AtualizaPerfil(perfilAtualizarDto, perfil);
+						perfilRepository.save(perfil);
+						
+						return ResponseEntity.ok("Perfil atualizado com sucesso.");
+					}).orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND)
+							.body("Perfil com ID " + id + " não encontrado."));
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
+		}
+		return null;
 	}
 }
