@@ -1,6 +1,7 @@
 package br.com.Neki_it.CartoesVirtuais.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -58,5 +59,18 @@ public class PerfilService {
 		
 		
 		return null;
+	}
+
+	public ResponseEntity<?> listarPerfilPorId(Long id) {
+		try {
+			Optional<PerfilModel> perfil = perfilRepository.findById(id);
+			if(perfil.isEmpty()) {
+				throw new  ResourceNotFoundException("Não existe Perfil cadastrado com id: " + id);
+			}
+			return ResponseEntity.ok(perfil);
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
+		}
 	}
 }

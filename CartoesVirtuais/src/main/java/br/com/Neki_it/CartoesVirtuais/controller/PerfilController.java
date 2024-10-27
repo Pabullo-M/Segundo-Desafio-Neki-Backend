@@ -26,7 +26,7 @@ public class PerfilController {
 		return perfilService.listarPerfis(); 
 	}
 	
-	@GetMapping("/${id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> listarPerfilPorId(@PathVariable Long id){
 		
 		return perfilService.listarPerfilPorId(id); 
