@@ -1,7 +1,4 @@
-
-
-BEGIN;
-
+-- Criação do banco de dados fora de uma transação
 CREATE DATABASE nekicard
     WITH
     OWNER = postgres
@@ -12,6 +9,12 @@ CREATE DATABASE nekicard
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
+
+-- Conecte-se ao banco de dados criado
+\c nekicard;
+
+-- Início da transação
+BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.perfil
 (
@@ -39,4 +42,10 @@ CREATE TABLE IF NOT EXISTS public.usuario
     CONSTRAINT usuario_pkey PRIMARY KEY (id),
     CONSTRAINT uk5171l57faosmj8myawaucatdw UNIQUE (email)
 );
-END;
+
+-- Inserção do usuário
+INSERT INTO public.usuario (nome, email, senha)
+VALUES ('exemplo', 'exemplo@neki.com.br', '123abc@');
+
+-- Fim da transação
+COMMIT;
