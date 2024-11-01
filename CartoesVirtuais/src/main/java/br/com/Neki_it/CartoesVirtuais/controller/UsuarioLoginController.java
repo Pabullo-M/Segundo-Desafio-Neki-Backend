@@ -2,6 +2,7 @@ package br.com.Neki_it.CartoesVirtuais.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ public class UsuarioLoginController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@CrossOrigin(origins = "http://localhost:5173")
 	@PostMapping
 	public ResponseEntity<?> usuariologin(@RequestBody @Valid UsuarioLoginDto usuarioLoginDto) {
 		

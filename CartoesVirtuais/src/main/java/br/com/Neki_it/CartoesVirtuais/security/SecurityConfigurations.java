@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import java.util.List;
 
 import br.com.Neki_it.CartoesVirtuais.service.AuthService;
 
@@ -33,17 +35,27 @@ public class SecurityConfigurations{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+        		 .cors(cors -> cors.configurationSource(request -> {
+     	            CorsConfiguration config = new CorsConfiguration();
+     	            config.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:8081"));
+     	            config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+     	            config.setAllowedHeaders(List.of("*"));
+     	            config.setAllowCredentials(true);
+     	            return config;
+     	        }))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                		.requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/usuario", "/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/perfil/{id}").permitAll()
+                		.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+           	            .requestMatchers("/login", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login", "/usuario").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/perfil/publico/{id}").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(filtro, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
 
 
     @Bean

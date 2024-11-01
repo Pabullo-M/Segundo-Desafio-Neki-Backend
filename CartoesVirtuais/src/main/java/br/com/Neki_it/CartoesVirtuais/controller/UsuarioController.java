@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.Neki_it.CartoesVirtuais.dto.UsuarioCadastroDto;
-import br.com.Neki_it.CartoesVirtuais.model.UsuarioModel;
 import br.com.Neki_it.CartoesVirtuais.service.UsuarioService;
 import jakarta.validation.Valid;
 

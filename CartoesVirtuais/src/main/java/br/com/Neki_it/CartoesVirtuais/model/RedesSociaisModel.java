@@ -1,9 +1,6 @@
 package br.com.Neki_it.CartoesVirtuais.model;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 
 @Embeddable
 public class RedesSociaisModel {

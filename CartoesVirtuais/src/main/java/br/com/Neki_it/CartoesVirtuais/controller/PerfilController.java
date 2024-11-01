@@ -29,12 +29,12 @@ public class PerfilController {
 		return perfilService.listarPerfis(); 
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/publico/{id}")
 	public ResponseEntity<?> listarPerfilPorId(@PathVariable Long id){
 		
 		return perfilService.listarPerfilPorId(id); 
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<?> adicionarPerfil(@RequestBody @Valid PerfilCadastroDto perfilCadastroDto){
 		

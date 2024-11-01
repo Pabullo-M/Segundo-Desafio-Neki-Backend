@@ -25,7 +25,7 @@ public class TokenService {
 				
 				Algorithm algorithm = Algorithm.HMAC256(secret);
 				String token = JWT.create()
-						.withIssuer("pmp-api")
+						.withIssuer("neki")
 						.withSubject(usuario.getEmail())
 						.withExpiresAt(geracaoDeDataExpiracao())
 						.sign(algorithm);
@@ -43,7 +43,7 @@ public class TokenService {
 			try {
 				Algorithm algorithm = Algorithm.HMAC256(secret);
 				return JWT.require(algorithm)
-						.withIssuer("pmp-api")
+						.withIssuer("neki")
 						.build()
 						.verify(token)
 						.getSubject();

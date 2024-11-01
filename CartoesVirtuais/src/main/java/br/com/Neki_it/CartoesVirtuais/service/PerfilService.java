@@ -104,9 +104,11 @@ public class PerfilService {
 						return ResponseEntity.ok("Perfil atualizado com sucesso.");
 					}).orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND)
 							.body("Perfil com ID " + id + " não encontrado."));
-		}catch(DataIntegrityViolationException e) {
-			
-			throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
-		}
+		} catch (DataIntegrityViolationException e) {
+			if (e.getMessage().contains("Chave (email)=")) {
+				 throw new DatabaseException("O e-mail informado já está em uso. Por favor, escolha outro.", e);
+			}
+	        throw new DatabaseException("Erro de integridade no banco de dados: " + e.getMessage(), e);
+		}	
 	}
 }

@@ -1,15 +1,20 @@
 package br.com.Neki_it.CartoesVirtuais.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
+@Table(name = "perfil")
 public class PerfilModel {
 	
 
@@ -26,8 +31,8 @@ public class PerfilModel {
 	
 	private String nomeSocial;
 	
-	@NotBlank
-	private String dataNascimento;
+	@NotNull
+	private LocalDate dataNascimento;
 	
 	@NotBlank
 	private String foto;
@@ -42,7 +47,7 @@ public class PerfilModel {
 	}
 
 	public PerfilModel(Long id, @NotBlank String email, @NotBlank String nomeCompleto, String nomeSocial,
-			@NotBlank String dataNascimento, @NotBlank String foto, String telefone, RedesSociaisModel redesSociais) {
+			@NotBlank LocalDate dataNascimento, @NotBlank String foto, String telefone, RedesSociaisModel redesSociais) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -86,11 +91,11 @@ public class PerfilModel {
 		this.nomeSocial = nomeSocial;
 	}
 
-	public String getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

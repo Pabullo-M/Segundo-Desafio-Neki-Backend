@@ -17,6 +17,7 @@ import br.com.Neki_it.CartoesVirtuais.exception.ResourceNotFoundException;
 import br.com.Neki_it.CartoesVirtuais.mapper.UsuarioMapper;
 import br.com.Neki_it.CartoesVirtuais.model.UsuarioModel;
 import br.com.Neki_it.CartoesVirtuais.repository.UsuarioRepository;
+import br.com.Neki_it.CartoesVirtuais.exception.AuthException;
 import jakarta.validation.Valid;
 
 @Service
@@ -61,7 +62,10 @@ public class UsuarioService {
 	        var token = tokenService.geracaoToken((UsuarioModel) auth.getPrincipal());
 	        return ResponseEntity.ok(token);
 	    } catch (AuthenticationException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    	if(e.getMessage().contains("Bad credentials")) {
+	    		throw new AuthException("Usuário ou senha incorretos, favor verifique e tente novamente.", e);
+	    	}
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 	    }
 	}
 }

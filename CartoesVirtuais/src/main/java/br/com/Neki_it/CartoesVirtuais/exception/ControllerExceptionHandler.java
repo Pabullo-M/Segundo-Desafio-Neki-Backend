@@ -82,5 +82,15 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	            "Erro de banco de dados: " + ex.getMessage(), LocalDateTime.now(), null);
 	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroResposta);
 	}
+	@ExceptionHandler(AuthException.class)
+    public ResponseEntity<Object> handleAuthenticationException(AuthException ex) {
+        ErroResposta erroResposta = new ErroResposta(
+                HttpStatus.UNAUTHORIZED.value(),
+                "Erro de autenticação: " + ex.getMessage(),
+                LocalDateTime.now(),
+                null
+        );
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(erroResposta);
+    }
 
 }

@@ -1,13 +1,8 @@
 package br.com.Neki_it.CartoesVirtuais.dto;
 
+import java.time.LocalDate;
+
 import br.com.Neki_it.CartoesVirtuais.model.RedesSociaisModel;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 
@@ -25,7 +20,7 @@ public class PerfilAtualizarDto {
 	
 	private String nomeSocial;
 	
-	private String dataNascimento;
+	private LocalDate dataNascimento;
 	
 	private String foto;
 	
@@ -38,7 +33,7 @@ public class PerfilAtualizarDto {
 	}
 
 	public PerfilAtualizarDto(String email, String nomeCompleto, String nomeSocial,
-			String dataNascimento, String foto, String telefone, RedesSociaisModel redesSociais) {
+			LocalDate dataNascimento, String foto, String telefone, RedesSociaisModel redesSociais) {
 		super();
 		this.email = email;
 		this.nomeCompleto = nomeCompleto;
@@ -74,11 +69,11 @@ public class PerfilAtualizarDto {
 		this.nomeSocial = nomeSocial;
 	}
 
-	public String getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
